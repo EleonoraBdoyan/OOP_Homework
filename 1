@@ -59,3 +59,42 @@ Properties:
 # Create a class Person with properties name and age.
 # Implement methods to set and get the values of the properties.
 # Create a program that creates a Person object, sets its name and age, and then prints its values.
+
+
+# Interfaces:
+# Create an interface IAnimal with methods speak() and eat().
+# Implement classes Cat and Dog that implement the IAnimal interface.
+# Create a program that creates objects of each class and calls their speak() and eat() methods.
+import abc
+
+class IAnimal(abc.ABC):
+
+    @abc.abstractmethod
+    def speak(self):
+        pass
+
+    @abc.abstractmethod
+    def eat(self):
+        pass
+
+class Cat(IAnimal):
+
+    def speak(self):
+        print("Meow")
+
+    def eat(self):
+        print("Cat is eating.")
+
+
+class Dog(IAnimal):
+
+    def speak(self):
+        print("Haf")
+
+    def eat(self):
+        print("Dog is eating.")
+
+for i in [Cat(), Dog()]:
+    i.speak()
+    i.eat()
+
