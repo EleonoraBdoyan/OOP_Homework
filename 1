@@ -1,0 +1,32 @@
+# Abstract Classes and Methods:
+# Create an abstract class Shape with an abstract method area().
+# Implement concrete classes Circle and Rectangle that inherit from Shape and implement the area() method.
+# Create an instance of each class and print its area.
+import abc
+import math
+
+class Shape(abc.ABC):
+    @abc.abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return math.pi * self.radius ** 2
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+circle_obj = Circle(2)
+print(circle_obj.area())
+
+rectangle_obj = Rectangle(2, 3)
+print(rectangle_obj.area())
