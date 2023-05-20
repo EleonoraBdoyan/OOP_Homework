@@ -30,3 +30,25 @@ print(circle_obj.area())
 
 rectangle_obj = Rectangle(2, 3)
 print(rectangle_obj.area())
+
+
+# Class and Static Methods:
+# Create a class Math with class methods add() and multiply(), and a static method square().
+# Implement the methods to perform their respective operations on two numbers.
+# Create a program that uses the Math class to add, multiply, and square some numbers.
+
+
+class Math:
+    @classmethod
+    def add(cls, x, y):
+        return x + y
+    @classmethod
+    def multiple(cls, x, y):
+        return x * y
+    @staticmethod
+    def square(x):
+        return x ** 2
+
+print(Math.add(2, 3))
+print(Math.multiple(2, 3))
+print(Math.square(3))
