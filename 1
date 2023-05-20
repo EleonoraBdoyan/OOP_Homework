@@ -98,3 +98,20 @@ for i in [Cat(), Dog()]:
     i.speak()
     i.eat()
 
+
+# Metaclasses:
+# Create a metaclass MyMeta that prints a message whenever a new class is created.
+# Define a class MyClass that uses the MyMeta metaclass.
+# Create an instance of MyClass and observe the message printed by the MyMeta metaclass.
+
+class MyMeta(type):
+    def __new__(cls, name, bases, attrs):
+        print("New class was created.")
+        return super().__new__(cls, name, bases, attrs)
+
+class MyClass(metaclass=MyMeta):
+        pass
+
+
+obj = MyClass()
+
