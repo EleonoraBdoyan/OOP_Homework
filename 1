@@ -1,3 +1,52 @@
+import unittest
+from unittest.mock import patch
+from user_database import UserDatabase
+
+class TestUserDatabase(unittest.TestCase):
+    def setUp(self):
+        self.user_db = UserDatabase()
+
+    @patch('builtins.input', side_effect=["Alice", "30", "123-456-7890"])
+    def test_add_user(self, mock_input):
+        # Call the add_user method with mocked input
+        self.user_db.add_user()
+
+        # Check if the user is added to the database
+        users = self.user_db.get_users()
+        self.assertEqual(len(users), 1)
+
+        # Check the user's information
+        user = users[0]
+        self.assertEqual(user["name"], "Alice")
+        self.assertEqual(user["age"], 30)
+        self.assertEqual(user["phone_number"], "123-456-7890")
+
+    @patch('builtins.input', side_effect=["Bob", "25", "987-654-3210", "Eve", "28", "555-555-5555"])
+    def test_add_multiple_users(self, mock_input):
+        # Call the add_user method multiple times with mocked input
+        self.user_db.add_user()
+        self.user_db.add_user()
+
+        # Check if all users are added to the database
+        users = self.user_db.get_users()
+        self.assertEqual(len(users), 2)
+
+        # Check user information for Bob
+        user_bob = users[0]
+        self.assertEqual(user_bob["name"], "Bob")
+        self.assertEqual(user_bob["age"], 25)
+        self.assertEqual(user_bob["phone_number"], "987-654-3210")
+
+        # Check user information for Eve
+        user_eve = users[1]
+        self.assertEqual(user_eve["name"], "Eve")
+        self.assertEqual(user_eve["age"], 28)
+        self.assertEqual(user_eve["phone_number"], "555-555-5555")
+
+if __name__ == '__main__':
+    unittest.main()
+
+
 # Abstract Classes and Methods:
 # Create an abstract class Shape with an abstract method area().
 # Implement concrete classes Circle and Rectangle that inherit from Shape and implement the area() method.
